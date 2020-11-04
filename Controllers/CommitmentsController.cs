@@ -1,29 +1,28 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using OrganizationDashboard.Data;
-using OrganizationDashboard.Dtos;
-using OrganizationDashboard.Models;
+using OrganizationDashboardAPI.Data;
+using OrganizationDashboardAPI.Dtos;
+using OrganizationDashboardAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OrganizationDashboard.Controllers
+namespace OrganizationDashboardAPI.Controllers
 {
     //api/commitments
     [Route("api/[controller]")]
     [ApiController]
     public class CommitmentsController : ControllerBase
     {
-        private readonly IOrganizationDashboardRepo _repository;
+        private readonly ICommitmentRepo _repository;
         private readonly IMapper _mapper;
-
-        public CommitmentsController(IOrganizationDashboardRepo repository, IMapper mapper)
+        public CommitmentsController(ICommitmentRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
-            
+
         //private readonly MockCommitmentRepo _repository = new MockCommitmentRepo();
         //GET api/commitments
         [HttpGet]
@@ -39,7 +38,7 @@ namespace OrganizationDashboard.Controllers
         {
             var commitmentItem = _repository.GetCommitmentById(id);
 
-            if(commitmentItem != null)
+            if (commitmentItem != null)
                 return Ok(_mapper.Map<CommitmentReadDto>(commitmentItem));
 
             return NotFound();
@@ -60,10 +59,10 @@ namespace OrganizationDashboard.Controllers
 
         //PUT api/commitments/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateCommitment (int id, CommitmentUpdateDto commitmentUpdateDto)
+        public ActionResult UpdateCommitment(int id, CommitmentUpdateDto commitmentUpdateDto)
         {
             var commitmentModel = _repository.GetCommitmentById(id);
-            if(commitmentModel == null)
+            if (commitmentModel == null)
             {
                 return NotFound();
             }
@@ -76,6 +75,5 @@ namespace OrganizationDashboard.Controllers
 
             return NoContent();
         }
-
     }
 }

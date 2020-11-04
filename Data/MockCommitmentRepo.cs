@@ -1,12 +1,12 @@
-﻿using System;
+﻿using OrganizationDashboardAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OrganizationDashboard.Models;
 
-namespace OrganizationDashboard.Data
+namespace OrganizationDashboardAPI.Data
 {
-    public class MockOrganizationDashboardRepo : IOrganizationDashboardRepo
+    public class MockCommitmentRepo : ICommitmentRepo
     {
         public void CreateCommitment(Commitment cmt)
         {

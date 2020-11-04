@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganizationDashboardAPI", "OrganizationDashboardAPI.csproj", "{F9C71004-D19B-4E6B-A0A2-F842ECE08656}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9C71004-D19B-4E6B-A0A2-F842ECE08656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9C71004-D19B-4E6B-A0A2-F842ECE08656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9C71004-D19B-4E6B-A0A2-F842ECE08656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9C71004-D19B-4E6B-A0A2-F842ECE08656}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CECB2DA-3C63-45CD-A1E2-1CA10757B935}
+	EndGlobalSection
+EndGlobal

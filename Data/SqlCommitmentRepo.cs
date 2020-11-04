@@ -1,23 +1,22 @@
-﻿using System;
+﻿using OrganizationDashboardAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using OrganizationDashboard.Models;
 
-namespace OrganizationDashboard.Data
+namespace OrganizationDashboardAPI.Data
 {
-    public class SqlOrganizationDashboardRepo : IOrganizationDashboardRepo
+    public class SqlCommitmentRepo : ICommitmentRepo
     {
-        private readonly OrganizationDashboardContext _context;
+        private readonly OrganizationDashboardAPIContext _context;
 
-        public SqlOrganizationDashboardRepo(OrganizationDashboardContext context)
+        public SqlCommitmentRepo(OrganizationDashboardAPIContext context)
         {
             _context = context;
         }
 
         public void CreateCommitment(Commitment cmt)
         {
-            if(cmt == null)
+            if (cmt == null)
             {
                 throw new ArgumentNullException(nameof(cmt));
             }

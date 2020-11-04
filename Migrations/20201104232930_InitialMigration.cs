@@ -1,8 +1,7 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace OrganizationDashboard.Migrations
+namespace OrganizationDashboardAPI.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -13,7 +12,7 @@ namespace OrganizationDashboard.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false)
