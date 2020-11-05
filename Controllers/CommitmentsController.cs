@@ -27,7 +27,7 @@ namespace OrganizationDashboardAPI.Controllers
         //private readonly MockCommitmentRepo _repository = new MockCommitmentRepo();
         //GET api/commitments
         [HttpGet]
-        public ActionResult<IEnumerable<CommitmentReadDto>> GetAllCommitment()
+        public ActionResult<IEnumerable<CommitmentReadDto>> GetAllCommitments()
         {
             var commitmentItems = _repository.GetAllCommitments();
             return Ok(_mapper.Map<IEnumerable<CommitmentReadDto>>(commitmentItems));

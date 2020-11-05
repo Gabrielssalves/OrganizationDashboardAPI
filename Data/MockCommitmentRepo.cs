@@ -13,6 +13,11 @@ namespace OrganizationDashboardAPI.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteCommitment(Commitment cmt)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Commitment> GetAllCommitments()
         {
             var commitments = new List<Commitment>

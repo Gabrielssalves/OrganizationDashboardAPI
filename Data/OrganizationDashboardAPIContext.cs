@@ -9,6 +9,7 @@ namespace OrganizationDashboardAPI.Data
         {
 
         }
+        public DbSet<Space> Spaces { get; set; }
         public DbSet<Commitment> Commitments { get; set; }
     }
 }
