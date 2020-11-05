@@ -24,6 +24,16 @@ namespace OrganizationDashboardAPI.Data
             _context.Add(cmt);
         }
 
+        public void DeleteCommitment(Commitment cmt)
+        {
+            if(cmt == null)
+            {
+                throw new ArgumentNullException(nameof(cmt));
+            }
+
+            _context.Commitments.Remove(cmt);
+        }
+
         public IEnumerable<Commitment> GetAllCommitments()
         {
             return _context.Commitments.ToList();

@@ -14,6 +14,7 @@ namespace OrganizationDashboardAPI.Data
         Commitment GetCommitmentById(int id);
         void CreateCommitment(Commitment cmt);
         void UpdateCommitment(Commitment cmt);
+        void DeleteCommitment(Commitment cmt);
 
     }
 }

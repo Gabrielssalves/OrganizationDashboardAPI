@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using OrganizationDashboardAPI.Data;
 using OrganizationDashboardAPI.Dtos;
@@ -75,5 +76,48 @@ namespace OrganizationDashboardAPI.Controllers
 
             return NoContent();
         }
+
+        //PATCH api/commitments/{id}
+        [HttpPatch("id")]
+        public ActionResult PartialCommitmentUpdate(int id, JsonPatchDocument<CommitmentUpdateDto> patchDoc)
+        {
+            var commitmentModel = _repository.GetCommitmentById(id);
+            if (commitmentModel == null)
+            {
+                return NotFound();
+            }
+
+            var commitmentToPatch = _mapper.Map<CommitmentUpdateDto>(commitmentModel);
+            patchDoc.ApplyTo(commitmentToPatch, ModelState);
+
+            if (!TryValidateModel(commitmentToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(commitmentToPatch, commitmentModel);
+
+            _repository.UpdateCommitment(commitmentModel);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        //DELETE api/commitments/{id}
+        [HttpDelete("id")]
+        public ActionResult DeleteCommitment(int id)
+        {
+            var commitmentModel = _repository.GetCommitmentById(id);
+            if (commitmentModel == null)
+            {
+                return NotFound();
+            }
+
+            _repository.DeleteCommitment(commitmentModel);
+            _repository.SaveChanges();
+
+            return NoContent();
+;        }
     }
 }

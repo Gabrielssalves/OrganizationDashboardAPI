@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OrganizationDashboardAPI.Data;
+using Newtonsoft.Json.Serialization;
 
 namespace OrganizationDashboardAPI
 {
@@ -32,7 +33,10 @@ namespace OrganizationDashboardAPI
             services.AddDbContext<OrganizationDashboardAPIContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("OrganizationDashboardAPIConnection")));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(s => {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

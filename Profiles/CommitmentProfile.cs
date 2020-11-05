@@ -17,6 +17,7 @@ namespace OrganizationDashboardAPI.Profiles
             //Source -> Target
             CreateMap<Commitment, CommitmentReadDto>();
             CreateMap<Commitment, CommitmentCreateDto>();
+            CreateMap<CommitmentUpdateDto, Commitment>();
             CreateMap<Commitment, CommitmentUpdateDto>();
 
         } 
