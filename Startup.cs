@@ -42,6 +42,7 @@ namespace OrganizationDashboardAPI
 
             //services.AddScoped<IOrganizationDashboardRepo, MockOrganizationDashboardRepo>();
             services.AddScoped<ICommitmentRepo, SqlCommitmentRepo>();
+            services.AddScoped<ISpaceRepo, SqlSpaceRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

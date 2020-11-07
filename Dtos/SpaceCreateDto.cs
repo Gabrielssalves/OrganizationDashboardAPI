@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrganizationDashboardAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,6 @@ namespace OrganizationDashboardAPI.Dtos
 
         [MaxLength(20)]
         public string Color { get; set; }
+        public ICollection<Commitment> Commitments { get; set; }
     }
 }

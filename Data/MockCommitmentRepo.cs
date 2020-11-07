@@ -35,6 +35,11 @@ namespace OrganizationDashboardAPI.Data
             return new Commitment { Id = 0, Name = "Almoço", Description = "Fritar um ovão maneiro!", Date = DateTime.Now.ToUniversalTime() };
         }
 
+        public IEnumerable<Commitment> GetCommitmentsBySpace(int spaceId)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool SaveChanges()
         {
             throw new NotImplementedException();

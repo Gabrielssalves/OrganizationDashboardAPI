@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrganizationDashboardAPI.Data;
 
 namespace OrganizationDashboardAPI.Migrations
 {
     [DbContext(typeof(OrganizationDashboardAPIContext))]
-    partial class OrganizationDashboardAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20201105235043_SpaceById")]
+    partial class SpaceById
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

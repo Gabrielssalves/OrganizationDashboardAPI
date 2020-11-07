@@ -17,5 +17,8 @@ namespace OrganizationDashboardAPI.Models
 
         [Required]
         public DateTime Date { get; set; }
+        
+        [Required]
+        public int SpaceId { get; set; }
     }
 }

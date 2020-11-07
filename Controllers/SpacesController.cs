@@ -13,12 +13,12 @@ namespace OrganizationDashboardAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpaceController : ControllerBase
+    public class SpacesController : ControllerBase
     {
         private readonly ISpaceRepo _repository;
         private readonly IMapper _mapper;
 
-        public SpaceController(ISpaceRepo repository, IMapper mapper)
+        public SpacesController(ISpaceRepo repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -36,40 +36,40 @@ namespace OrganizationDashboardAPI.Controllers
         [HttpGet("{id}", Name = "GetSpaceById")]
         public ActionResult<SpaceReadDto> GetSpaceById(int id)
         {
-            var commitmentItem = _repository.GetSpaceById(id);
+            var spaceItem = _repository.GetSpaceById(id);
 
-            if (commitmentItem != null)
-                return Ok(_mapper.Map<SpaceReadDto>(commitmentItem));
+            if (spaceItem != null)
+                return Ok(_mapper.Map<SpaceReadDto>(spaceItem));
 
             return NotFound();
         }
 
         //POST api/spaces
         [HttpPost]
-        public ActionResult<SpaceReadDto> CreateSpace(SpaceCreateDto commitmentCreateDto)
+        public ActionResult<SpaceReadDto> CreateSpace(SpaceCreateDto spaceCreateDto)
         {
-            var commitmentModel = _mapper.Map<Space>(commitmentCreateDto);
-            _repository.CreateSpace(commitmentModel);
+            var spaceModel = _mapper.Map<Space>(spaceCreateDto);
+            _repository.CreateSpace(spaceModel);
             _repository.SaveChanges();
 
-            var commitmentReadDto = _mapper.Map<SpaceReadDto>(commitmentModel);
+            var spaceReadDto = _mapper.Map<SpaceReadDto>(spaceModel);
 
-            return CreatedAtRoute(nameof(GetSpaceById), new { Id = commitmentReadDto.Id }, commitmentReadDto);
+            return CreatedAtRoute(nameof(GetSpaceById), new { Id = spaceReadDto.Id }, spaceReadDto);
         }
 
         //PUT api/spaces/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateSpace(int id, SpaceUpdateDto commitmentUpdateDto)
+        public ActionResult UpdateSpace(int id, SpaceUpdateDto spaceUpdateDto)
         {
-            var commitmentModel = _repository.GetSpaceById(id);
-            if (commitmentModel == null)
+            var spaceModel = _repository.GetSpaceById(id);
+            if (spaceModel == null)
             {
                 return NotFound();
             }
 
-            _mapper.Map(commitmentUpdateDto, commitmentModel);
+            _mapper.Map(spaceUpdateDto, spaceModel);
 
-            _repository.UpdateSpace(commitmentModel);
+            _repository.UpdateSpace(spaceModel);
 
             _repository.SaveChanges();
 
@@ -80,23 +80,23 @@ namespace OrganizationDashboardAPI.Controllers
         [HttpPatch("id")]
         public ActionResult PartialSpaceUpdate(int id, JsonPatchDocument<SpaceUpdateDto> patchDoc)
         {
-            var commitmentModel = _repository.GetSpaceById(id);
-            if (commitmentModel == null)
+            var spaceModel = _repository.GetSpaceById(id);
+            if (spaceModel == null)
             {
                 return NotFound();
             }
 
-            var commitmentToPatch = _mapper.Map<SpaceUpdateDto>(commitmentModel);
-            patchDoc.ApplyTo(commitmentToPatch, ModelState);
+            var spaceToPatch = _mapper.Map<SpaceUpdateDto>(spaceModel);
+            patchDoc.ApplyTo(spaceToPatch, ModelState);
 
-            if (!TryValidateModel(commitmentToPatch))
+            if (!TryValidateModel(spaceToPatch))
             {
                 return ValidationProblem(ModelState);
             }
 
-            _mapper.Map(commitmentToPatch, commitmentModel);
+            _mapper.Map(spaceToPatch, spaceModel);
 
-            _repository.UpdateSpace(commitmentModel);
+            _repository.UpdateSpace(spaceModel);
 
             _repository.SaveChanges();
 
@@ -107,13 +107,13 @@ namespace OrganizationDashboardAPI.Controllers
         [HttpDelete("id")]
         public ActionResult DeleteSpace(int id)
         {
-            var commitmentModel = _repository.GetSpaceById(id);
-            if (commitmentModel == null)
+            var spaceModel = _repository.GetSpaceById(id);
+            if (spaceModel == null)
             {
                 return NotFound();
             }
 
-            _repository.DeleteSpace(commitmentModel);
+            _repository.DeleteSpace(spaceModel);
             _repository.SaveChanges();
 
             return NoContent();

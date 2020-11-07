@@ -15,7 +15,7 @@ namespace OrganizationDashboardAPI.Profiles
         {
             //Source -> Target
             CreateMap<Space, SpaceReadDto>();
-            CreateMap<Space, SpaceCreateDto>();
+            CreateMap<SpaceCreateDto, Space>();
             CreateMap<SpaceUpdateDto, Space>();
             CreateMap<Space, SpaceUpdateDto>();
         }

@@ -11,6 +11,7 @@ namespace OrganizationDashboardAPI.Data
         bool SaveChanges();
 
         IEnumerable<Commitment> GetAllCommitments();
+        IEnumerable<Commitment> GetCommitmentsBySpace(int spaceId);
         Commitment GetCommitmentById(int id);
         void CreateCommitment(Commitment cmt);
         void UpdateCommitment(Commitment cmt);

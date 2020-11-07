@@ -44,6 +44,14 @@ namespace OrganizationDashboardAPI.Data
             return _context.Commitments.FirstOrDefault(p => p.Id == id);
         }
 
+        public IEnumerable<Commitment> GetCommitmentsBySpace(int spaceId)
+        {
+            return _context.Commitments
+                        .Where(commitment => commitment.SpaceId == spaceId)
+                        .OrderBy(commitment => commitment.Id)
+                        .ToList();
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

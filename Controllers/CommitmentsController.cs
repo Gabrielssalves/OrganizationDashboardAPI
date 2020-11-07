@@ -45,6 +45,18 @@ namespace OrganizationDashboardAPI.Controllers
             return NotFound();
         }
 
+        //GET api/commitments/space/{id}
+        [HttpGet("space/{spaceid}")]
+        public ActionResult<IEnumerable<CommitmentReadDto>> GetCommitmentsBySpace(int spaceid)
+        {
+            var commitments = _repository.GetCommitmentsBySpace(spaceid);
+
+            if (commitments != null)
+                return Ok(_mapper.Map<IEnumerable<CommitmentReadDto>>(commitments));
+
+            return NotFound();
+        }
+
         //POST api/commitments
         [HttpPost]
         public ActionResult<CommitmentReadDto> CreateCommitment(CommitmentCreateDto commitmentCreateDto)
