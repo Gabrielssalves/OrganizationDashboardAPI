@@ -32,6 +32,13 @@ namespace OrganizationDashboardAPI.Controllers
             return Ok(_mapper.Map<IEnumerable<SpaceReadDto>>(SpaceItems));
         }
 
+        [HttpGet("users/{userId}")]
+        public ActionResult<IEnumerable<SpaceReadDto>> GetSpacesByUser(string userId)
+        {
+            var SpaceItems = _repository.GetSpacesByUser(userId);
+            return Ok(_mapper.Map<IEnumerable<SpaceReadDto>>(SpaceItems));
+        }
+
         //GET api/spaces/{id}
         [HttpGet("{id}", Name = "GetSpaceById")]
         public ActionResult<SpaceReadDto> GetSpaceById(int id)

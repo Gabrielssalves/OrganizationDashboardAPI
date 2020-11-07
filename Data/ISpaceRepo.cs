@@ -11,6 +11,7 @@ namespace OrganizationDashboardAPI.Data
         bool SaveChanges();
 
         IEnumerable<Space> GetAllSpaces();
+        IEnumerable<Space> GetSpacesByUser(string userId);
         Space GetSpaceById(int id);
         void CreateSpace(Space space);
         void UpdateSpace(Space space);

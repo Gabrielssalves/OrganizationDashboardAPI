@@ -20,5 +20,7 @@ namespace OrganizationDashboardAPI.Models
         [MaxLength(20)]
         public string Color { get; set; }
         public ICollection<Commitment> Commitments { get; set; }
+        [Required]
+        public string UserId { get; set; }
     }
 }

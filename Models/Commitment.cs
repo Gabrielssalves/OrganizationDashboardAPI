@@ -14,10 +14,12 @@ namespace OrganizationDashboardAPI.Models
         [MaxLength(100)]
         public string Name { get; set; }
         public string Description { get; set; }
-
         [Required]
         public DateTime Date { get; set; }
-        
+        [Required]
+        public DateTime InitialCommitmentDate { get; set; }
+        [Required]
+        public DateTime FinalCommitmentDate { get; set; }
         [Required]
         public int SpaceId { get; set; }
     }

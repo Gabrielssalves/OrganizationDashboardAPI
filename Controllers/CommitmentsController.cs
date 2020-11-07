@@ -46,7 +46,7 @@ namespace OrganizationDashboardAPI.Controllers
         }
 
         //GET api/commitments/space/{id}
-        [HttpGet("space/{spaceid}")]
+        [HttpGet("spaces/{spaceid}")]
         public ActionResult<IEnumerable<CommitmentReadDto>> GetCommitmentsBySpace(int spaceid)
         {
             var commitments = _repository.GetCommitmentsBySpace(spaceid);

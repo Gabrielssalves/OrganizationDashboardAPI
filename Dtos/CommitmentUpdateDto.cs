@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,12 +9,9 @@ namespace OrganizationDashboardAPI.Dtos
 {
     public class CommitmentUpdateDto
     {
-        [Required]
-        [MaxLength(100)]
         public string Name { get; set; }
         public string Description { get; set; }
-
-        [Required]
-        public DateTime Date { get; set; }
+        public DateTime InitialCommitmentDate { get; set; }
+        public DateTime FinalCommitmentDate { get; set; }
     }
 }

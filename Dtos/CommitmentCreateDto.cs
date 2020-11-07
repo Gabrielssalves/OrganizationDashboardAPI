@@ -11,6 +11,8 @@ namespace OrganizationDashboardAPI.Dtos
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+        public DateTime InitialCommitmentDate { get; set; }
+        public DateTime FinalCommitmentDate { get; set; }
         public int SpaceID { get; set; }
     }
 }

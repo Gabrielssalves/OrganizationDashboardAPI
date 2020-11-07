@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 
 namespace OrganizationDashboardAPI.Data
@@ -43,6 +44,14 @@ namespace OrganizationDashboardAPI.Data
         public Space GetSpaceById(int id)
         {
             return _context.Spaces.FirstOrDefault(p => p.Id == id);
+        }
+
+        public IEnumerable<Space> GetSpacesByUser(string userId)
+        {
+            return _context.Spaces
+                        .Where(space => space.UserId == userId)
+                        .OrderBy(space => space.Id)
+                        .ToList();
         }
 
         public bool SaveChanges()
