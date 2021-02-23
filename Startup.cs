@@ -14,6 +14,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OrganizationDashboardAPI.Data;
 using Newtonsoft.Json.Serialization;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace OrganizationDashboardAPI
 {
@@ -33,6 +36,8 @@ namespace OrganizationDashboardAPI
             services.AddDbContext<OrganizationDashboardAPIContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("OrganizationDashboardAPIConnection")));
 
+            services.AddCors();
+
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
@@ -43,6 +48,26 @@ namespace OrganizationDashboardAPI
             //services.AddScoped<IOrganizationDashboardRepo, MockOrganizationDashboardRepo>();
             services.AddScoped<ICommitmentRepo, SqlCommitmentRepo>();
             services.AddScoped<ISpaceRepo, SqlSpaceRepo>();
+
+            var key = Encoding.ASCII.GetBytes($"Configuration{"Secret"}");
+
+            services.AddAuthentication(s =>
+            {
+                s.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                s.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +81,13 @@ namespace OrganizationDashboardAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
